@@ -22,17 +22,14 @@ $(function() {
         		return;
         	}
         	
-        	//var user = {};
+  
         	var firstName = fname.value;
         	var lastName = lname.value;
         	var email = email_reg.value;
         	var password = password_reg.value;
         	var dgender = gender.value;
-        	
-        	
-        	//var requestJson = JSON.stringify(user);
-        	//console.log("Json String: "+requestJson);
-			
+     
+			//Modified by Sweta Patel
         	$.ajax({
 
         		type: 'POST', 
@@ -61,7 +58,7 @@ $(function() {
       },
       close: function() {
         allFields.val( "" ).removeClass( "ui-state-error" ); 
-        parent.reloadContent(); // added by Rohini
+        parent.reloadContent(); 
       } 
     });
  
