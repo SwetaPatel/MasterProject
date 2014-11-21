@@ -1,0 +1,19 @@
+{
+	"title":"Health Service",
+	"heading":"Health Service",
+	"heading2part1":"Manage",
+	"heading2part2":"Analyze",
+	"heading2part3":"Take Care",
+	"home":"Home",
+	"login":"Login",
+	"register":"Register",
+	"mypatients":"Patient List",
+	"logout":"LogOut",
+	"punchline":"Manage Patient Details",
+	"para1":"	Health Service is one place to manage your all patients' details. 
+				It helps to manage patient's profile, view their reports and give them feedback about their health.",
+	"aboutUs":"About Us",
+	"aboutUsPara1": "Health Service is one place to manage your all patients' details. It helps doctor to manage patient profile, view their reports and give them feedback about their health.",
+	"aboutUsPara2": "Any Questions? Any Suggestions ?",
+	"aboutUsPara3": "Write to us at"
+}

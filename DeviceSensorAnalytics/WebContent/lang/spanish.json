@@ -1,0 +1,19 @@
+{
+	"title":"Health Service",
+	"heading":"Health Service",
+	"heading2part1":"gestionar",
+	"heading2part2":"analizar",
+	"heading2part3":"Cuidate",
+	"home":"Casa",
+	"login":"Login",
+	"register":"Registro",
+	"mypatients":"Lista de pacientes",
+	"logout":"LogOut",
+	"punchline":"Gestionar datos del paciente",
+	"para1":"	Servicio de Salud es un lugar para gestionar tus detalles de todos los pacientes. 
+				Ayuda a gestionar el perfil de paciente , ver sus informes y darles retroalimentación sobre su salud.",
+	"aboutUs":"Quienes somos",
+	"aboutUsPara1": "Servicio de Salud es un lugar para gestionar tus detalles de todos los pacientes. Ayuda a gestionar el perfil de paciente , ver sus informes y darles retroalimentacion sobre su salud.",
+	"aboutUsPara2": "Alguna pregunta? Alguna sugerencia?",
+	"aboutUsPara3": "Escribanos a"
+}
