@@ -2,16 +2,16 @@ package cmpe.service;
 
 import java.util.List;
 
-import javax.ws.rs.POST;
+import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
 import cmpe.dao.impl.PatientListDaoImpl;
 import cmpe.entity.PatientList;
-@Path("/demail")
+@Path("/plist")
 public class PatientListService {
-	@POST
+	@GET
     @Path("/{demail}")
 	public Response psignup(@PathParam("demail") String demail) {
 		PatientList su = new PatientList();

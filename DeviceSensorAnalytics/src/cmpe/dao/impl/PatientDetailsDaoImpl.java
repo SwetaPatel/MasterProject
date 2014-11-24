@@ -22,15 +22,8 @@ public class PatientDetailsDaoImpl {
 		try { 
 			@SuppressWarnings("deprecation")
 			Mongo mongo = new Mongo("localhost", 27017);  
-			DB db = mongo.getDB("patientdb"); 
-			DBCollection collection = db.getCollection("pateintRegistrationCollection");  
-//			BasicDBObject andQuery = new BasicDBObject();
-//			List<BasicDBObject> obj = new ArrayList<BasicDBObject>();
-//			obj.add(new BasicDBObject("email", email));
-//			obj.add(new BasicDBObject("password", password));
-//			andQuery.put("$and", obj);
-//			System.out.println(andQuery.toString());
-//			DBCursor cursor = collection.find(andQuery);
+			DB db = mongo.getDB("patientRdb"); 
+			DBCollection collection = db.getCollection("patientRCollection");  
 			BasicDBObject whereQuery = new BasicDBObject();
 			whereQuery.put("email", email);
 			DBCursor cursor = collection.find(whereQuery);

@@ -13,11 +13,8 @@ public class PatientRegistrationService {
     @Path("/{email}/{password}/{fName}/{lName}/{gender}/{age}/{demail}")
 	public Response psignup(@PathParam("email") String email, @PathParam("password") String password, @PathParam("fName") String fName, @PathParam("lName") String lName, 
 			@PathParam("gender") String gender, @PathParam("age") String age, @PathParam("demail") String demail) {
-	    	
 		
-//		long time = System.currentTimeMillis();
-//		Timestamp timestamp = new Timestamp(time);
-		
+		System.out.println("aa2");
 		int pAge = Integer.parseInt(age);
 	//	int pId = Integer.parseInt(id);
 		PatientRegistration su = new PatientRegistration();
@@ -30,9 +27,9 @@ public class PatientRegistrationService {
 	    	su.setDemail(demail);
 	   // 	su.setId(pId);
 	    	//su.setTimestamp(timestamp);
-	    	
+	    	System.out.println("aa3");
 	    	PatientRegistrationDaoImpl Sudao = new PatientRegistrationDaoImpl();
-	    	
+	    	System.out.println("aa4");
 	    	String Output = Sudao.psignup(su);
 	    	return Response.status(200).entity(Output).build();
 	    		

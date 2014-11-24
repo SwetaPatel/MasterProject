@@ -21,7 +21,7 @@ public class DoctorLoginDaoImpl {
 		try { 
 			@SuppressWarnings("deprecation")
 			Mongo mongo = new Mongo("localhost", 27017);  
-			DB db = mongo.getDB("doctordb"); 
+			DB db = mongo.getDB("doctorRegistrationdb"); 
 			DBCollection collection = db.getCollection("doctorRegistrationCollection");  
 			BasicDBObject andQuery = new BasicDBObject();
 			List<BasicDBObject> obj = new ArrayList<BasicDBObject>();

@@ -14,7 +14,6 @@ public class DoctorLoginService {
 	
 	  public Response get_dsignin(@PathParam("email") String email, @PathParam("password") String password) {
 		
-		System.out.println("SWETA sign in");
 		DoctorLogin si = new DoctorLogin();
     	si.setEmail(email);
     	si.setPassword(password);

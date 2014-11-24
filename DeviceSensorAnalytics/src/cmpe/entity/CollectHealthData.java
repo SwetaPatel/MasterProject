@@ -2,7 +2,7 @@ package cmpe.entity;
 
 import java.util.Date;
 
-public class ReportGeneration {
+public class CollectHealthData {
 	private String highBp;
 	private String lowBp;
 	private String bpsReading;

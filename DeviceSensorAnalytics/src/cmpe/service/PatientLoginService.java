@@ -6,7 +6,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
 import cmpe.dao.impl.PatientLoginDaoImpl;
-import cmpe.entity.PatientLogin;
+import cmpe.entity.PatientRegistration;
 @Path("/psignin")
 public class PatientLoginService {
 	@GET
@@ -14,7 +14,7 @@ public class PatientLoginService {
 	
 	  public Response get_psignin(@PathParam("email") String email, @PathParam("password") String password) {
 //		
-		PatientLogin si = new PatientLogin();
+		PatientRegistration si = new PatientRegistration();
     	si.setEmail(email);
     	si.setPassword(password);
     	PatientLoginDaoImpl Sidao = new PatientLoginDaoImpl();

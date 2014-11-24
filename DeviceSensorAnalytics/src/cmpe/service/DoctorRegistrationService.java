@@ -12,10 +12,10 @@ import cmpe.entity.DoctorRegistration;
 public class DoctorRegistrationService {
 	@POST
     @Path("/{email}/{password}/{fName}/{lName}/{gender}")
-	public Response dsignup(@PathParam("email") String demail, @PathParam("password") String dpassword, @PathParam("fName") String docFname, @PathParam("lName") String docLname, 
-			@PathParam("gender") String dgender) {
+	public Response dsignup(@PathParam("demail") String demail, @PathParam("dpassword") String dpassword, @PathParam("docFname") String docFname, @PathParam("docLname") String docLname, 
+			@PathParam("dgender") String dgender) {
 	    	
-		//System.out.println("SWETA GOT IT");
+		
 //		long time = System.currentTimeMillis();
 //		Timestamp timestamp = new Timestamp(time);
 	//	int dId = Integer.parseInt(id);

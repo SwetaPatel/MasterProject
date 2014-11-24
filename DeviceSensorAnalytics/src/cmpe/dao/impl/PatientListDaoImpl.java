@@ -18,20 +18,25 @@ public class PatientListDaoImpl {
 		List<String> li = new ArrayList<String>();
 		PatientList pl = (PatientList) object;
 		String demail = pl.getDemail();
+		System.out.println(demail);
 //		String password = pl.getPassword();
 		try { 
-			@SuppressWarnings("deprecation")
 			Mongo mongo = new Mongo("localhost", 27017);  
 			DB db = mongo.getDB("dPlist"); 
 			DBCollection collection = db.getCollection("dPListCollection");  
-			BasicDBObject allQuery = new BasicDBObject();
-			BasicDBObject fields = new BasicDBObject();
-			fields.put("demail", demail);
-			DBCursor cursor = collection.find(allQuery, fields);
+//			BasicDBObject allQuery = new BasicDBObject();
+//			BasicDBObject fields = new BasicDBObject();
+//			fields.put("demail", demail);
+			BasicDBObject searchQuery = new BasicDBObject();
+			searchQuery.put("demail", demail);
+		 
+			DBCursor cursor = collection.find(searchQuery);
+		 
+//			DBCursor cursor = collection.find(allQuery, fields);
 			while(cursor.hasNext()) {
 				String a = cursor.next().toString();
 				li.add(a);
-				System.out.println(cursor.next());
+//				System.out.println(cursor.next());
 			}
 			System.out.println("Done patient list for a doctor");
 			System.out.println(li);
