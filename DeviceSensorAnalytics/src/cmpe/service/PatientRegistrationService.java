@@ -5,13 +5,15 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
+import org.json.simple.JSONObject;
+
 import cmpe.dao.impl.PatientRegistrationDaoImpl;
 import cmpe.entity.PatientRegistration;
 @Path("/psignup")
 public class PatientRegistrationService {
 	@POST
     @Path("/{email}/{password}/{fName}/{lName}/{gender}/{age}/{demail}")
-	public Response psignup(@PathParam("email") String email, @PathParam("password") String password, @PathParam("fName") String fName, @PathParam("lName") String lName, 
+	public String psignup(@PathParam("email") String email, @PathParam("password") String password, @PathParam("fName") String fName, @PathParam("lName") String lName, 
 			@PathParam("gender") String gender, @PathParam("age") String age, @PathParam("demail") String demail) {
 		
 		System.out.println("aa2");
@@ -31,7 +33,9 @@ public class PatientRegistrationService {
 	    	PatientRegistrationDaoImpl Sudao = new PatientRegistrationDaoImpl();
 	    	System.out.println("aa4");
 	    	String Output = Sudao.psignup(su);
-	    	return Response.status(200).entity(Output).build();
-	    		
+	    	JSONObject json = new JSONObject();
+            json.put("status", 200);
+           
+            return json.toString();	
 	}
 }

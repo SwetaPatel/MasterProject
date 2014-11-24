@@ -14,15 +14,15 @@ public class PatientDetailsService {
 	@GET
 	@Path("/{email}")
 	
-	  public Response get_psignin(@PathParam("email") String email) {
+	  public String get_psignin(@PathParam("email") String email) {
 //		
 		PatientRegistration si = new PatientRegistration();
     	si.setEmail(email);
     	PatientDetailsDaoImpl Sidao = new PatientDetailsDaoImpl();
-    	List<String> Output =  Sidao.pDetails(si);
+    	String Output =  Sidao.pDetails(si);
 	 	//String Output = "hello";
     	
-    	return Response.status(200).entity(Output).build();
+    	return Output;
 		
 	}
 }

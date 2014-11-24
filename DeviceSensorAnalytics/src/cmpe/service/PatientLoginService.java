@@ -5,6 +5,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
+import org.json.simple.JSONObject;
+
 import cmpe.dao.impl.PatientLoginDaoImpl;
 import cmpe.entity.PatientRegistration;
 @Path("/psignin")
@@ -12,7 +14,7 @@ public class PatientLoginService {
 	@GET
 	@Path("/{email}/{password}")
 	
-	  public Response get_psignin(@PathParam("email") String email, @PathParam("password") String password) {
+	  public String get_psignin(@PathParam("email") String email, @PathParam("password") String password) {
 //		
 		PatientRegistration si = new PatientRegistration();
     	si.setEmail(email);
@@ -21,7 +23,9 @@ public class PatientLoginService {
     	String Output =  Sidao.psignin(si);
 	 	//String Output = "hello";
     	
-    	return Response.status(200).entity(Output).build();
-		
+    	JSONObject json = new JSONObject();
+        json.put("status", 200);
+       
+        return json.toString();
 	}
 }

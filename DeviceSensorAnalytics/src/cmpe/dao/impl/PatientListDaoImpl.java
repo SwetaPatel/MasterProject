@@ -18,7 +18,7 @@ public class PatientListDaoImpl {
 		List<String> li = new ArrayList<String>();
 		PatientList pl = (PatientList) object;
 		String demail = pl.getDemail();
-		System.out.println(demail);
+//		System.out.println(demail);
 //		String password = pl.getPassword();
 		try { 
 			Mongo mongo = new Mongo("localhost", 27017);  
@@ -34,9 +34,9 @@ public class PatientListDaoImpl {
 		 
 //			DBCursor cursor = collection.find(allQuery, fields);
 			while(cursor.hasNext()) {
-				String a = cursor.next().toString();
+//				System.out.println(cursor.next().get("pemail"));
+		String a = (cursor.next().get("pemail")).toString();
 				li.add(a);
-//				System.out.println(cursor.next());
 			}
 			System.out.println("Done patient list for a doctor");
 			System.out.println(li);

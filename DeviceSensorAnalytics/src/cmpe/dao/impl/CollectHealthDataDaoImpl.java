@@ -15,13 +15,13 @@ import com.mongodb.MongoException;
 public class CollectHealthDataDaoImpl {
 
 	public String collectData(Object object) {
-		Date date = new Date();
+//		Date date = new Date();
 		CollectHealthData pr = (CollectHealthData) object;
 		String highBp = pr.getHighBp();
 		String lowBp = pr.getLowBp();
 		String bpsReading = pr.getBpsReading();
 		String pemail = pr.getPemail();
-		Date dateVal = new Timestamp(date.getTime());
+		Date dateVal = new Date();
 		System.out.println("aa1");
 		try { 
 			Mongo mongo = new Mongo("localhost", 27017);  

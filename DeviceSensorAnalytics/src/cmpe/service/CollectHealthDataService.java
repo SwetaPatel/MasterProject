@@ -14,11 +14,6 @@ public class CollectHealthDataService {
 
 	@Path("/{pemail}/{highBp}/{lowBp}/{bpsReading}")
 	public Response psignup(@PathParam("pemail") String pemail, @PathParam("highBp") String highBp, @PathParam("lowBp") String lowBp, @PathParam("bpsReading") String bpsReading) {
-
-		//  @Path("/{pemail}/{highBp}/{lowBp}/{bpsReading}/{dateVal}")
-		//	public Response psignup(@PathParam("pemail") String pemail, @PathParam("highBp") String highBp, @PathParam("lowBp") String lowBp, @PathParam("bpsReading") String bpsReading, 
-		//			@PathParam("dateVal") String dateVal) {
-
 		System.out.println("aa2");
 
 		CollectHealthData su = new CollectHealthData();
@@ -26,8 +21,6 @@ public class CollectHealthDataService {
 		su.setHighBp(highBp);
 		su.setLowBp(lowBp);
 		su.setBpsReading(bpsReading);
-		//	    	su.setDateVal(dateVal);
-		//su.setTimestamp(timestamp);
 		System.out.println("aa3");
 		CollectHealthDataDaoImpl Sudao = new CollectHealthDataDaoImpl();
 		System.out.println("aa4");
