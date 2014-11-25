@@ -40,6 +40,12 @@ public class PatientDetailsDaoImpl {
 			String lName = o.get("lName").toString();
 			String age = o.get("age").toString();
 			
+			json.put("status", 200);
+            json.put("pemail", pemail);
+            json.put("gender", gender);
+            json.put("fName", fName);
+            json.put("lName", lName);
+			json.put("age",  age);
 			}
 			
 			System.out.println("Done details retrieved");

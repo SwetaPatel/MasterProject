@@ -10,7 +10,6 @@ import org.json.simple.JSONObject;
 import cmpe.dao.impl.DoctorRegistrationDaoImpl;
 import cmpe.entity.DoctorRegistration;
 
-import com.google.gson.Gson;
 
 @Path("/dsignup")
 public class DoctorRegistrationService {
