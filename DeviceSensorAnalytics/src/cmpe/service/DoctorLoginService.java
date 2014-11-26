@@ -9,6 +9,7 @@ import org.json.simple.JSONObject;
 
 import cmpe.dao.impl.DoctorLoginDaoImpl;
 import cmpe.entity.DoctorLogin;
+import utils.Session;
 @Path("/dsignin")
 public class DoctorLoginService {
 	@GET
@@ -21,6 +22,8 @@ public class DoctorLoginService {
     	si.setPassword(password);
     	DoctorLoginDaoImpl Sidao = new DoctorLoginDaoImpl();
     	String Output =  Sidao.dsignin(si);
+    	Session session = Session.getInstance();
+    	session.setEmail(email);
     	JSONObject json = new JSONObject();
         json.put("status", 200);
        

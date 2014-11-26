@@ -35,11 +35,15 @@ $(function() {
         		type: 'POST', 
         		url: '/DeviceSensorAnalytics/rest/dsignup/'+email+'/'+password+'/'+firstName+'/'+lastName+'/'+dgender,
         		success: function(data){
-        			if(data.errorCode == 200 && data.responseText == "Success"){
+        			alert(data);
+        			var obj = $.parseJSON(data);
+        			
+        			alert(obj.status);
+        			if(obj.status == 200){
         				console.log("Registration sucess..!!");
         				$("#dialog-form").dialog( "close" );
         			}
-        			else if (data.errorCode == 500)
+        			else if (obj.status == 500)
         				{
         				document.getElementById("error1").innerHTML = "Email address already exists.";
 

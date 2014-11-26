@@ -1,6 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@page import="utils.LocalizationHelper"%>
+<%@page import="utils.Session"%>
+<% 
+System.out.println("session is redirect in selectionnnn "  +session.getAttribute("lang"));
+String langSelected = session.getAttribute("lang").toString();
+if(langSelected == null){
+	langSelected = "english";
+}
+LocalizationHelper helper = LocalizationHelper.getInstance(langSelected, getServletContext());
+Session s = Session.getInstance();
+String userId = s.getEmail();
+
+%>
 <!-- SummaryPage -->
 
 <!DOCTYPE html>
@@ -26,8 +38,6 @@
 
 <link rel="stylesheet" type="text/css" href="css/demo1.css" />
 <link rel="stylesheet" type="text/css" href="css/style.css" />
-<script src="js/modernizr.custom.js"></script>
-
 <script src="js/jquerypp.custom.js"></script>
 <script src="js/jquery.bookblock.js"></script>
 <script src="js/slidercode.js"></script>
@@ -35,21 +45,73 @@
 
 <script src="js/registration.js"></script>
 <script src="js/login.js"></script>
-<script src="//connect.facebook.net/en_US/all.js"></script>
-<script src="js/fb.js"></script>
-
-
 <script type="text/javascript" src="js/DetailView.js"></script>
-<% 
-System.out.println("session is redirect in selectionnnn "  +session.getAttribute("lang"));
-String langSelected = session.getAttribute("lang").toString();
-if(langSelected == null){
-	langSelected = "english";
-}
-LocalizationHelper helper = LocalizationHelper.getInstance(langSelected, getServletContext());
-%>
+</head>
+<script>
+function getPatientList(){
+	//alert("Hello");
+	var demail = "<%=userId%>";
+	$.ajax({
+		type: 'GET', 
+		url: '/DeviceSensorAnalytics/rest/plist/'+demail,
+		success: function(data) {			    
 
-<body>
+			//alert(data);
+			var obj = $.parseJSON(data);
+			
+			//alert(obj.status);
+			if(obj.status == 200){
+				//alert(obj.patientList);
+				var values = [];
+				values = obj.patientList;
+				//alert(values);
+				var listString = "<table>";
+				$.each(values, function( index, value ) {
+					   //alert( index + ": " + value );
+						//listString+="<li><a id = \""+ value +"\" href=\"\" onclick=\"redirect(this.id);return false;\">"+value+"</a></li>";
+						listString+="<tr><td><a id = \""+ value +"\" href=\"\" onclick=\"redirect(this.id);return false;\">"+value+"</a></td></tr>";
+				});
+								
+				listString+="</table>";
+				//alert(listString);
+				$("#patientList").html(listString);				
+			}		
+		}
+	});	
+	
+}
+
+function redirect(emailId) {
+	<%if (userId == null) {%>
+alert("Please login");
+<%} else {
+%>
+	//alert(emailId);
+	window.location.href = "PatientDetails.jsp?email="+emailId;
+	
+<%}%>
+}
+
+</script>
+<script>	
+ 	
+	   function changeToSpanish()
+       {
+           document.form1.hiddenLanguage.value = "spanish";
+            form1.submit();
+
+       }    
+       function changeToEnglish()
+       {
+           document.form1.hiddenLanguage.value = "english";
+
+           form1.submit();
+
+       }        
+ 
+</script>
+
+<body onload="getPatientList()"> 
 <div id="wsb-canvas-template-page" class="wsb-canvas-page page"
 		style="height: 800px; margin: auto; width: 1050px; background-color: #ffffff; position: relative; margin-top: 0px">
 
@@ -70,13 +132,13 @@ LocalizationHelper helper = LocalizationHelper.getInstance(langSelected, getServ
 				<a href="HomePage.jsp" id="home" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" style="font-size: 14px; color: #561243;" data-inline="true">
 				<span class="ui-button-text"><%=helper.getText("home")%></span>
 				</a>
-				<% Integer userId = (Integer)session.getAttribute("userId"); %>
+				
 				
 				<a id="viewPatientList" href="PatientList.jsp" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" 
 				style="font-size:14px;color: #561243;<%if(userId == null){ %>display:none; <% } %>" data-inline="true"; ><span class="ui-button-text"><%=helper.getText("mypatients")%></span></a>
 				
 				<a id="login-user" style="font-size: 14px; color: #561243; <%if( userId != null){ %>display:none; <% } %>" data-inline="true";><%=helper.getText("login")%></a>
-				<a id="logout-user" href="logOut.jsp" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" 
+				<a id="logout-user" href="LogOut.jsp" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" 
 				style="font-size:14px;color: #561243;<%if(userId == null){ %>display:none; <% } %>" data-inline="true"; ><span class="ui-button-text"><%=helper.getText("logout")%></span></a>
 				<a id="create-user" style="font-size: 14px; color: #561243; <%if(userId != null){ %>display:none; <% } %>" data-inline="true"><%=helper.getText("register")%></a>
 				
@@ -115,8 +177,10 @@ LocalizationHelper helper = LocalizationHelper.getInstance(langSelected, getServ
 		</div>
 		<br>
 		<div class="container">
-
-
+			<div id = "patientList" align="center"></div>
+			
+		</div>
+			
 		</div>
 
 

@@ -1,7 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@page import="utils.LocalizationHelper"%>
-<!-- SummaryPage -->
+<%@page import="utils.Session"%>
+<% 
+System.out.println("session is redirect in selectionnnn "  +session.getAttribute("lang"));
+String langSelected = session.getAttribute("lang").toString();
+if(langSelected == null){
+	langSelected = "english";
+}
+LocalizationHelper helper = LocalizationHelper.getInstance(langSelected, getServletContext());
+Session s = Session.getInstance();
+String userId = s.getEmail();
+%>
 
 <!DOCTYPE html>
 <html lang="en" class="no-js demo-1">
@@ -41,16 +51,94 @@
 
 
 <script type="text/javascript" src="js/DetailView.js"></script>
-<% 
-System.out.println("session is redirect in selectionnnn "  +session.getAttribute("lang"));
-String langSelected = session.getAttribute("lang").toString();
-if(langSelected == null){
-	langSelected = "english";
-}
-LocalizationHelper helper = LocalizationHelper.getInstance(langSelected, getServletContext());
-%>
 
-<body>
+
+<script>
+//alert(document.URL);
+var param = (document.URL.split("?"))[1];	
+var pEmail = param.split("=")[1];
+//alert(pEmail);
+
+function fetchData(){
+
+
+	$.ajax({
+		type: 'GET', 
+		url: '/DeviceSensorAnalytics/rest/pdetails/'+pEmail,
+		success: function(data) {			    
+
+			//alert(data);
+			var obj = $.parseJSON(data);
+			
+			//alert(obj.status);
+			if(obj.status == 200){
+				var pemail = obj.pemail;
+				var gender = obj.gender;
+				var fName = obj.fName;
+				var lName = obj.lName;
+				var age = obj.age;
+				var profileString = "<table>";
+				profileString+="<tr><td><b>First Name:</b></td><td>"+fName+"</td></tr>";
+				profileString+="<tr><td><b>Last Name:</b></td><td>"+lName+"</td></tr>";
+				profileString+="<tr><td><b>Age:</b></td><td>"+age+"</td></tr>";
+				profileString+="<tr><td><b>Email:</b></td><td>"+pemail+"</td></tr>";
+				profileString+="<tr><td><b>Gender:</b></td><td>"+gender+"</td></tr>";
+				
+				profileString+="</table>";
+				//alert(profileString);
+				$("#profile").html(profileString);
+				
+			}		
+		}
+	});	
+}
+
+// Add function for Report
+
+
+function sendData(){
+	var data = document.getElementById("feedbackText").value;
+	//alert(data);
+
+	$.ajax({
+
+		type: 'POST', 
+		url: '/DeviceSensorAnalytics/rest/feedback/'+pEmail+'/'+data,
+		success: function(data){
+			//alert(data);
+			var obj = $.parseJSON(data);
+			
+			//alert(obj.status);
+			if(obj.status == 200){
+				
+				alert("Feedback sent successfully");
+				document.getElementById("feedbackText").value = "";	
+			}
+
+		}
+	});
+}
+
+</script>
+<script>	
+ 	
+	   function changeToSpanish()
+       {
+           document.form1.hiddenLanguage.value = "spanish";
+            form1.submit();
+
+       }    
+       function changeToEnglish()
+       {
+           document.form1.hiddenLanguage.value = "english";
+
+           form1.submit();
+
+       }        
+ 
+</script>
+
+<body onload="fetchData()">
 <div id="wsb-canvas-template-page" class="wsb-canvas-page page"
 		style="height: 800px; margin: auto; width: 1050px; background-color: #ffffff; position: relative; margin-top: 0px">
 
@@ -71,13 +159,13 @@ LocalizationHelper helper = LocalizationHelper.getInstance(langSelected, getServ
 				<a href="HomePage.jsp" id="home" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" style="font-size: 14px; color: #561243;" data-inline="true">
 				<span class="ui-button-text"><%=helper.getText("home")%></span>
 				</a>
-				<% Integer userId = (Integer)session.getAttribute("userId"); %>
+				
 				
 				<a id="viewPatientList" href="PatientList.jsp" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" 
 				style="font-size:14px;color: #561243;<%if(userId == null){ %>display:none; <% } %>" data-inline="true"; ><span class="ui-button-text"><%=helper.getText("mypatients")%></span></a>
 				
 				<a id="login-user" style="font-size: 14px; color: #561243; <%if( userId != null){ %>display:none; <% } %>" data-inline="true";><%=helper.getText("login")%></a>
-				<a id="logout-user" href="logOut.jsp" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" 
+				<a id="logout-user" href="LogOut.jsp" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" 
 				style="font-size:14px;color: #561243;<%if(userId == null){ %>display:none; <% } %>" data-inline="true"; ><span class="ui-button-text"><%=helper.getText("logout")%></span></a>
 				<a id="create-user" style="font-size: 14px; color: #561243; <%if(userId != null){ %>display:none; <% } %>" data-inline="true"><%=helper.getText("register")%></a>
 				
@@ -123,13 +211,27 @@ LocalizationHelper helper = LocalizationHelper.getInstance(langSelected, getServ
 			</ul>
 			<div class="tabcontents">
 			    <div id="view1">
-					content 1
+				    <div id = "profile" align="center">
+						
+					</div>
 			    </div>
 			    <div id="view2">
 			        content 2
 			    </div>
 			    <div id="view3">
-			        content 3
+			    	<div>
+				       <h3 align = "center"><%=helper.getText("feedbackHeading")%></h3>
+				       <div align = "center">
+				       <textarea id = "feedbackText" rows="4" cols="50">
+						 
+						</textarea>
+						</div>
+						<br>
+						<div align="center">
+							<!--  <button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id = "send" onclick = "sendFeedback()" value = "Send" role="button" aria-disabled="false"><span class="ui-button-text" >Send</span></button>-->
+							<button class= "button" id = "Send" value = "Send" onclick = "sendData();"><%=helper.getText("send")%></button>
+						</div>
+					</div>
 			    </div>
 			</div>
 		</div>

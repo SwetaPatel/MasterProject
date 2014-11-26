@@ -15,5 +15,7 @@
 	"aboutUs":"Quienes somos",
 	"aboutUsPara1": "Servicio de Salud es un lugar para gestionar tus detalles de todos los pacientes. Ayuda a gestionar el perfil de paciente , ver sus informes y darles retroalimentacion sobre su salud.",
 	"aboutUsPara2": "Alguna pregunta? Alguna sugerencia?",
-	"aboutUsPara3": "Escribanos a"
+	"aboutUsPara3": "Escribanos a",
+	"feedbackHeading": "Por favor ingrese comentarios a continuacion",
+	"send": "Enviar"
 }

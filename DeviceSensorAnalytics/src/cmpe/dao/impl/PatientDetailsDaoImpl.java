@@ -20,7 +20,7 @@ import com.mongodb.MongoException;
 public class PatientDetailsDaoImpl {
 	public String pDetails(Object object) { 
 		PatientRegistration pl = (PatientRegistration) object;
-		String email = pl.getEmail();
+		String email = pl.getEmail();		
 		JSONObject json = new JSONObject();
 		//String password = pl.getPassword();
 		try { 
@@ -34,7 +34,7 @@ public class PatientDetailsDaoImpl {
 			
 			while(cursor.hasNext()) {
 				DBObject o = cursor.next();
-			String pemail = o.get("pemail").toString();
+			String pemail = o.get("email").toString();
 			String gender = o.get("gender").toString();
 			String fName = o.get("fName").toString();
 			String lName = o.get("lName").toString();

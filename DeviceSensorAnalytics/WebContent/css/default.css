@@ -197,7 +197,7 @@ a img {
 
 .demo-1 body {
 	color: #87968e;
-	background-image: url('/HealthServiceWebApp/img/back.jpg');
+	background-image: url('/DeviceSensorAnalytics/img/back.jpg');
 	
 }
 
@@ -270,6 +270,10 @@ a img {
 
 .demo-5 body {
 	background: #fffbd6;
+}
+
+th,td {
+    padding: 15px;
 }
 
 

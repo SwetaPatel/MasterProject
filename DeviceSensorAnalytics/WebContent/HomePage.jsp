@@ -1,8 +1,8 @@
-<!-- HomePage -->
-
 <!DOCTYPE html>
 <%@ page pageEncoding="UTF-8" %>
 <%@page import="utils.LocalizationHelper"%>
+<%@page import="utils.Session"%>
+
 <html lang="en" class="no-js demo-1">
 <head>
 	<meta charset="UTF-8" />
@@ -32,13 +32,11 @@
 
 	<script src="js/registration.js"></script>
 	<script src="js/login.js"></script>
-	<script src="//connect.facebook.net/en_US/all.js"></script>
-	<script src="js/fb.js"></script>
-	<script src="js/forgotPassword.js"></script>
+
 	
 	
 <script>	
- 
+ 	
 	   function changeToSpanish()
        {
            document.form1.hiddenLanguage.value = "spanish";
@@ -51,14 +49,9 @@
 
            form1.submit();
 
-       }    
-       
-       
+       }        
  
 </script>
-
-
-
 </head>
 <body>
 
@@ -67,22 +60,22 @@
 		<div id="d_header">
 			<div id="heading">
 			
+			
 		<div class="left">
 			<% 		
-			 String lang = request.getParameter("hiddenLanguage");
-			
+			 String lang = request.getParameter("hiddenLanguage");			
 			if (lang == null)
 			{
 				lang = "english";
 				
-			} 
-			
+			} 			
 			session.removeAttribute("lang");
 			session.setAttribute("lang", lang);
 			System.out.println("session is " + session.getAttribute("lang"));
 			LocalizationHelper helper = LocalizationHelper.getInstance(lang, getServletContext());
-			
-			
+			Session s = Session.getInstance();
+			String userId = s.getEmail();
+		
 			%>
 				<span class="s_heading"><%=helper.getText("heading")%></span><br>
 				<span class="s_heading" style="font-size: 14px; float:left">
@@ -96,7 +89,7 @@
 				<a href="HomePage.jsp" id="home" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" style="font-size: 14px; color: #561243;" data-inline="true">
 				<span class="ui-button-text"><%=helper.getText("home")%></span>
 				</a>
-				<% Integer userId = (Integer)session.getAttribute("userId"); %>
+				
 				
 				<a id="viewPatientList" href="PatientList.jsp" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" 
 				style="font-size:14px;color: #561243;<%if(userId == null){ %>display:none; <% } %>" data-inline="true"; >
@@ -105,7 +98,7 @@
 				
 				<a id="login-user" style="font-size: 14px; color: #561243; <%if( userId != null){ %>display:none; <% } %>" data-inline="true";><%=helper.getText("login")%></a>
 				
-				<a id="logout-user" href="logOut.jsp" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" 
+				<a id="logout-user" href="LogOut.jsp" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" 
 				style="font-size:14px;color: #561243;<%if(userId == null){ %>display:none; <% } %>" data-inline="true"; ><span class="ui-button-text"><%=helper.getText("logout")%></span></a>
 				
 				<a id="create-user" style="font-size: 14px; color: #561243; <%if(userId != null){ %>display:none; <% } %>" data-inline="true"><%=helper.getText("register")%></a>

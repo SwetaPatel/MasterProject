@@ -1,4 +1,3 @@
-
 $(function() {
 	var name = $( "#name" ),
 	email = $( "#email" ),
@@ -32,18 +31,24 @@ $(function() {
 					type: 'GET', 
 	        		url: '/DeviceSensorAnalytics/rest/dsignin/'+email+'/'+password,
 	        		success: function(data){
-						if(data.errorCode == 200 && data.responseText == "Success"){
+	        			//alert(data);
+	        			var obj = $.parseJSON(data);
+	        			
+	        			//alert(obj.status);
+						if(obj.status == 200 ){
 							console.log("success");
 							console.log("Login Successful..!!");
 							document.getElementById("login-user").style.display = "none";  
 							document.getElementById("create-user").style.display = "none";
-							document.getElementById("fblogin").style.display = "none";
+							//document.getElementById("fblogin").style.display = "none";
 							document.getElementById("logout-user").style.display = "inline-block";
+							document.getElementById("viewPatientList").style.display = "inline-block";
 							$( "#dialog-form1").dialog( "close" );
+							
 						}
 						else{
 							document.getElementById("errorMessage").innerHTML = "Invalid Input. Try again.";
-							console.log("Uh-oh - Something went wrong, try again!");
+							console.log("Something went wrong, try again!");
 						}
 					}
 				});
@@ -51,12 +56,12 @@ $(function() {
 			},
 			Cancel: function() {
 				$( this ).dialog( "close" );
-				parent.reloadContent(); // added by Rohini
+				parent.reloadContent();
 			}
 		},
 		close: function() {
 			allFields.val( "" ).removeClass( "ui-state-error" );
-			parent.reloadContent(); // added by Rohini
+			parent.reloadContent(); 
 		}
 	});
 
@@ -66,24 +71,9 @@ $(function() {
 		$( "#dialog-form1" ).dialog( "open" );
 	});
 
-/*
-	$( "#logout-user" )
-	.button()
-	.click(function() {
-		
-		console.log("Logging Out..");
-		document.getElementById("login-user").style.display = "inline-block";  
-		document.getElementById("create-user").style.display = "inline-block";
-		document.getElementById("fblogin").style.display = "inline-block";
-		document.getElementById("logout-user").style.display = "none";  
-		console.log("Logged out");
-	});
-
-*/
 });
 
 
-//added by Rohini
 function reloadContent() {
     location.reload();
 }

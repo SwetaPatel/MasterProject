@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@page import="utils.LocalizationHelper"%>
+<%@page import="utils.Session"%>
 <!-- SummaryPage -->
 
 <!DOCTYPE html>
@@ -47,7 +48,26 @@ if(langSelected == null){
 	langSelected = "english";
 }
 LocalizationHelper helper = LocalizationHelper.getInstance(langSelected, getServletContext());
+Session s = Session.getInstance();
+String userId = s.getEmail();
 %>
+<script>	
+ 	var userId= null;
+	   function changeToSpanish()
+       {
+           document.form1.hiddenLanguage.value = "spanish";
+            form1.submit();
+
+       }    
+       function changeToEnglish()
+       {
+           document.form1.hiddenLanguage.value = "english";
+
+           form1.submit();
+
+       }        
+ 
+</script>
 
 <body>
 
@@ -71,13 +91,13 @@ LocalizationHelper helper = LocalizationHelper.getInstance(langSelected, getServ
 				<a href="HomePage.jsp" id="home" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" style="font-size: 14px; color: #561243;" data-inline="true">
 				<span class="ui-button-text"><%=helper.getText("home")%></span>
 				</a>
-				<% Integer userId = (Integer)session.getAttribute("userId"); %>
+				
 				
 				<a id="viewPatientList" href="PatientList.jsp" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" 
 				style="font-size:14px;color: #561243;<%if(userId == null){ %>display:none; <% } %>" data-inline="true"; ><span class="ui-button-text"><%=helper.getText("mypatients")%></span></a>
 				
 				<a id="login-user" style="font-size: 14px; color: #561243; <%if( userId != null){ %>display:none; <% } %>" data-inline="true";><%=helper.getText("login")%></a>
-				<a id="logout-user" href="logOut.jsp" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" 
+				<a id="logout-user" href="LogOut.jsp" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" 
 				style="font-size:14px;color: #561243;<%if(userId == null){ %>display:none; <% } %>" data-inline="true"; ><span class="ui-button-text"><%=helper.getText("logout")%></span></a>
 				<a id="create-user" style="font-size: 14px; color: #561243; <%if(userId != null){ %>display:none; <% } %>" data-inline="true"><%=helper.getText("register")%></a>
 				
