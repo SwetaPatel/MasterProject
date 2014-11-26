@@ -35,10 +35,10 @@ $(function() {
         		type: 'POST', 
         		url: '/DeviceSensorAnalytics/rest/dsignup/'+email+'/'+password+'/'+firstName+'/'+lastName+'/'+dgender,
         		success: function(data){
-        			alert(data);
+        			//alert(data);
         			var obj = $.parseJSON(data);
         			
-        			alert(obj.status);
+        			//alert(obj.status);
         			if(obj.status == 200){
         				console.log("Registration sucess..!!");
         				$("#dialog-form").dialog( "close" );
@@ -57,7 +57,7 @@ $(function() {
         },
         Cancel: function() {
           $( this ).dialog( "close" );
-          parent.reloadContent(); // added by Rohini
+          parent.reloadContent();
         }
       },
       close: function() {

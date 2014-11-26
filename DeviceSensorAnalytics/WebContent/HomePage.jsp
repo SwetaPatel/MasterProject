@@ -162,8 +162,7 @@
 				</div>
 			</div>
 
-			<!-- /container -->
-			<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
+
 			<script src="js/jquerypp.custom.js"></script>
 			<script src="js/jquery.bookblock.js"></script>
 			<script>
@@ -306,19 +305,10 @@
 				<p id="errorMessage" style="font-size:12px;color:red;"></p>
 				<label for="email_login">Email</label> <input type="email" name="email_login" id="email_login" style="font-size:12px;" class="text ui-widget-content ui-corner-all" placeholder='john@yahoo.com'/><br>
 				<label for="password_login">Password</label> <input type="password" name="password_login" id="password_login" style="font-size:12px;" class="text ui-widget-content ui-corner-all"/> <br>
-				<a href='javascript:forgotPassword();' id="forgotPwd" style="font-size: 12px;"data-inline="true">
-				<span>Forgot Password?</span>
-				</a> 
+
 			</fieldset>
 		</form>
-	</div> 
-	
-
-
 	</div>
-
+	</div>
 </body>
-
-
-
 </html>

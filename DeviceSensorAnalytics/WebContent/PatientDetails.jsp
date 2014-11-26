@@ -3,7 +3,6 @@
 <%@page import="utils.LocalizationHelper"%>
 <%@page import="utils.Session"%>
 <% 
-System.out.println("session is redirect in selectionnnn "  +session.getAttribute("lang"));
 String langSelected = session.getAttribute("lang").toString();
 if(langSelected == null){
 	langSelected = "english";
@@ -46,12 +45,6 @@ String userId = s.getEmail();
 
 <script src="js/registration.js"></script>
 <script src="js/login.js"></script>
-<script src="//connect.facebook.net/en_US/all.js"></script>
-<script src="js/fb.js"></script>
-
-
-<script type="text/javascript" src="js/DetailView.js"></script>
-
 
 <script>
 //alert(document.URL);
@@ -191,14 +184,8 @@ function sendData(){
 						
 						        </FORM> 
 						</span> 
- 				</div>
-				
-   				
-
-  			   
-  			</div>
-  			      
-				
+ 				</div>  			   
+  			</div>			
 			</div>
 		</div>
 		<br>
@@ -211,8 +198,7 @@ function sendData(){
 			</ul>
 			<div class="tabcontents">
 			    <div id="view1">
-				    <div id = "profile" align="center">
-						
+				    <div id = "profile" align="center">						
 					</div>
 			    </div>
 			    <div id="view2">
@@ -228,7 +214,7 @@ function sendData(){
 						</div>
 						<br>
 						<div align="center">
-							<!--  <button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id = "send" onclick = "sendFeedback()" value = "Send" role="button" aria-disabled="false"><span class="ui-button-text" >Send</span></button>-->
+							
 							<button class= "button" id = "Send" value = "Send" onclick = "sendData();"><%=helper.getText("send")%></button>
 						</div>
 					</div>

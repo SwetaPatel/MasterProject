@@ -3,7 +3,7 @@
 <%@page import="utils.LocalizationHelper"%>
 <%@page import="utils.Session"%>
 <% 
-System.out.println("session is redirect in selectionnnn "  +session.getAttribute("lang"));
+
 String langSelected = session.getAttribute("lang").toString();
 if(langSelected == null){
 	langSelected = "english";
@@ -13,7 +13,6 @@ Session s = Session.getInstance();
 String userId = s.getEmail();
 
 %>
-<!-- SummaryPage -->
 
 <!DOCTYPE html>
 <html lang="en" class="no-js demo-1">
@@ -131,9 +130,7 @@ alert("Please login");
 				<div style="display:inline-block; vertical-align:top; margin-left:200pxx;">
 				<a href="HomePage.jsp" id="home" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" style="font-size: 14px; color: #561243;" data-inline="true">
 				<span class="ui-button-text"><%=helper.getText("home")%></span>
-				</a>
-				
-				
+				</a>				
 				<a id="viewPatientList" href="PatientList.jsp" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" 
 				style="font-size:14px;color: #561243;<%if(userId == null){ %>display:none; <% } %>" data-inline="true"; ><span class="ui-button-text"><%=helper.getText("mypatients")%></span></a>
 				
@@ -164,15 +161,8 @@ alert("Please login");
 						
 						        </FORM> 
 						</span> 
- 				</div>
-				
-   				
-
-  			   
-  			</div>
-  			
-  			      
-				
+ 				</div>  			   
+  			</div>				
 			</div>
 		</div>
 		<br>
@@ -182,8 +172,6 @@ alert("Please login");
 		</div>
 			
 		</div>
-
-
 				<br>
 		<div class="d_footer">
 			<span class="copyright">© 2014 Health Service. All Rights Reserved. | </span>

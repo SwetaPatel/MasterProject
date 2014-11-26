@@ -2,7 +2,6 @@
     pageEncoding="ISO-8859-1"%>
 <%@page import="utils.LocalizationHelper"%>
 <%@page import="utils.Session"%>
-<!-- SummaryPage -->
 
 <!DOCTYPE html>
 <html lang="en" class="no-js demo-1">
@@ -36,8 +35,7 @@
 
 <script src="js/registration.js"></script>
 <script src="js/login.js"></script>
-<script src="//connect.facebook.net/en_US/all.js"></script>
-<script src="js/fb.js"></script>
+
 
 
 <script type="text/javascript" src="js/DetailView.js"></script>
