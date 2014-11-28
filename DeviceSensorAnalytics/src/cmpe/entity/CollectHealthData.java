@@ -5,7 +5,6 @@ import java.util.Date;
 public class CollectHealthData {
 	private String highBp;
 	private String lowBp;
-	private String bpsReading;
 	private String pemail;
 	private Date dateVal;
 	public String getHighBp() {
@@ -20,12 +19,12 @@ public class CollectHealthData {
 	public void setLowBp(String lowBp) {
 		this.lowBp = lowBp;
 	}
-	public String getBpsReading() {
-		return bpsReading;
-	}
-	public void setBpsReading(String bpsReading) {
-		this.bpsReading = bpsReading;
-	}
+//	public String getBpsReading() {
+//		return bpsReading;
+//	}
+//	public void setBpsReading(String bpsReading) {
+//		this.bpsReading = bpsReading;
+//	}
 	public String getPemail() {
 		return pemail;
 	}

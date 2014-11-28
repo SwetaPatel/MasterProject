@@ -18,6 +18,7 @@ public class PatientLoginDaoImpl {
 		PatientRegistration pl = (PatientRegistration) object;
 		String email = pl.getEmail();
 		String password = pl.getPassword();
+		String out = null;
 		try { 
 			Mongo mongo = new Mongo("localhost", 27017);  
 			DB db = mongo.getDB("patientRdb"); 
@@ -29,8 +30,15 @@ public class PatientLoginDaoImpl {
 			andQuery.put("$and", obj);
 		//	System.out.println(andQuery.toString());
 			DBCursor cursor = collection.find(andQuery);
-			while(cursor.hasNext()) {
+			if(cursor.hasNext()) {
 			    System.out.println(cursor.next());
+//				String a = (cursor.next().get("pemail")).toString();
+//				System.out.println(a);
+			    out = "yes";
+			}
+			else{
+				System.out.println("no value exists");
+				out =  "no";
 			}
 			System.out.println("Done");
 		} catch (UnknownHostException e) { 
@@ -40,7 +48,7 @@ public class PatientLoginDaoImpl {
 			// TODO Auto-generated catch block 
 			e.printStackTrace(); 
 		}
-		return "hello";
+		return out;
 	} 
 
 }

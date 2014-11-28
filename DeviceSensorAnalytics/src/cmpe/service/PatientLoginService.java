@@ -22,10 +22,13 @@ public class PatientLoginService {
     	PatientLoginDaoImpl Sidao = new PatientLoginDaoImpl();
     	String Output =  Sidao.psignin(si);
 	 	//String Output = "hello";
-    	
     	JSONObject json = new JSONObject();
-        json.put("status", 200);
-       
+    	if(Output=="yes"){
+    		json.put("status", 200);
+    	}
+    	else if(Output=="no"){
+    		json.put("status", 401);
+    	}
         return json.toString();
 	}
 }

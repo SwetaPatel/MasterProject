@@ -14,8 +14,8 @@ import cmpe.entity.Feedback;
 @Path("/feedback")
 public class FeedbackService {
 	@POST
-    @Path("/{email}/{description}")
-	public String psignup(@PathParam("pemail") String pemail, @PathParam("description") String description) {
+    @Path("/{pemail}/{description}")
+	public String giveFeedback(@PathParam("pemail") String pemail, @PathParam("description") String description) {
 		
 		System.out.println("aa2");
 		
