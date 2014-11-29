@@ -18,8 +18,9 @@ public class DoctorLoginDaoImpl {
 		DoctorLogin pl = (DoctorLogin) object;
 		String email = pl.getEmail();
 		String password = pl.getPassword();
+		String oute = null;
 		try { 
-			@SuppressWarnings("deprecation")
+			
 			Mongo mongo = new Mongo("localhost", 27017);  
 			DB db = mongo.getDB("doctorRegistrationdb"); 
 			DBCollection collection = db.getCollection("doctorRegistrationCollection");  
@@ -28,10 +29,15 @@ public class DoctorLoginDaoImpl {
 			obj.add(new BasicDBObject("email", email));
 			obj.add(new BasicDBObject("password", password));
 			andQuery.put("$and", obj);
-			System.out.println(andQuery.toString());
+//			System.out.println(andQuery.toString());
 			DBCursor cursor = collection.find(andQuery);
-			while(cursor.hasNext()) {
+			if(cursor.hasNext()) {
 			    System.out.println(cursor.next());
+			    oute = "yes";
+			}
+			else {
+				System.out.println("no value exists");
+				oute =  "no";
 			}
 			System.out.println("Done"); 
 		} catch (UnknownHostException e) { 
@@ -41,6 +47,6 @@ public class DoctorLoginDaoImpl {
 			// TODO Auto-generated catch block 
 			e.printStackTrace(); 
 		}
-		return null;
+		return oute;
 	} 
 }

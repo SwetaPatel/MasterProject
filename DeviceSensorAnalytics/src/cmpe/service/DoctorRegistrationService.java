@@ -15,8 +15,8 @@ import cmpe.entity.DoctorRegistration;
 public class DoctorRegistrationService {
 	@POST
     @Path("/{email}/{password}/{fName}/{lName}/{gender}")
-	public String dsignup(@PathParam("demail") String demail, @PathParam("dpassword") String dpassword, @PathParam("docFname") String docFname, @PathParam("docLname") String docLname, 
-			@PathParam("dgender") String dgender) {
+	public String dsignup(@PathParam("email") String demail, @PathParam("password") String dpassword, @PathParam("fName") String docFname, @PathParam("lName") String docLname, 
+			@PathParam("gender") String dgender) {
 	 
 		DoctorRegistration su = new DoctorRegistration();
 	    	su.setDemail(demail);;
@@ -24,7 +24,10 @@ public class DoctorRegistrationService {
 	    	su.setDocFname(docFname);
 	    	su.setDocLname(docLname);
 	    	su.setDgender(dgender);
-	  
+	    	System.out.println(demail);
+	    	System.out.println(dpassword);
+	    	System.out.println(docFname);
+	    	System.out.println(dgender);
 	    	DoctorRegistrationDaoImpl Sudao = new DoctorRegistrationDaoImpl();
 	    	
 	    	String Output = Sudao.dsignup(su);

@@ -25,8 +25,12 @@ public class DoctorLoginService {
     	Session session = Session.getInstance();
     	session.setEmail(email);
     	JSONObject json = new JSONObject();
-        json.put("status", 200);
-       
+    	if(Output=="yes"){
+    		json.put("status", 200);
+    	}
+    	else if(Output=="no"){
+    		json.put("status", 401);
+    	}
         return json.toString();
 	}
 }
