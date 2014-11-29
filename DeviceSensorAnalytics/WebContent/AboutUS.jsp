@@ -2,7 +2,17 @@
     pageEncoding="ISO-8859-1"%>
 <%@page import="utils.LocalizationHelper"%>
 <%@page import="utils.Session"%>
-
+<% 	
+			Session s = Session.getInstance();
+			String userId = s.getEmail();
+			String lang = s.getLanguage();
+			
+			if(lang==null){
+				lang = "english";
+			}
+			
+			LocalizationHelper helper = LocalizationHelper.getInstance(lang, getServletContext());
+%>
 <!DOCTYPE html>
 <html lang="en" class="no-js demo-1">
 <head>
@@ -39,34 +49,52 @@
 
 
 <script type="text/javascript" src="js/DetailView.js"></script>
-<% 
-System.out.println("session is redirect in selectionnnn "  +session.getAttribute("lang"));
-String langSelected = session.getAttribute("lang").toString();
-if(langSelected == null){
-	langSelected = "english";
-}
-LocalizationHelper helper = LocalizationHelper.getInstance(langSelected, getServletContext());
-Session s = Session.getInstance();
-String userId = s.getEmail();
-%>
-<script>	
- 	var userId= null;
-	   function changeToSpanish()
-       {
-           document.form1.hiddenLanguage.value = "spanish";
-            form1.submit();
 
+<script>	
+ 	
+	   function changeToSpanish()
+       {	//alert("change to spanish called");
+           //document.form1.hiddenLanguage.value = "spanish";
+			$.ajax({
+
+        		type: 'POST', 
+        		url: '/DeviceSensorAnalytics/rest/language/'+"spanish",
+        		success: function(data){
+        			//alert(data);
+        			var obj = $.parseJSON(data);
+        			
+        			//alert(obj.status);
+        			if(obj.status == 200){
+        				console.log("Changed to Spanish");
+        				
+        			}
+        			
+        		}
+        	});
+            form1.submit();
        }    
        function changeToEnglish()
        {
-           document.form1.hiddenLanguage.value = "english";
+			$.ajax({
 
-           form1.submit();
-
+        		type: 'POST', 
+        		url: '/DeviceSensorAnalytics/rest/language/'+"english",
+        		success: function(data){
+        			//alert(data);
+        			var obj = $.parseJSON(data);
+        			
+        			//alert(obj.status);
+        			if(obj.status == 200){
+        				console.log("Changed to english");
+        				
+        			}
+        			
+        		}
+        	});
+            form1.submit();
        }        
  
 </script>
-
 <body>
 
 	<div id="wsb-canvas-template-page" class="wsb-canvas-page page"

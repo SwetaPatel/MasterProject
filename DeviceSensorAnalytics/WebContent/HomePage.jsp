@@ -2,6 +2,17 @@
 <%@ page pageEncoding="UTF-8" %>
 <%@page import="utils.LocalizationHelper"%>
 <%@page import="utils.Session"%>
+<% 	
+			Session s = Session.getInstance();
+			String userId = s.getEmail();
+			String lang = s.getLanguage();
+						
+			if(lang==null){
+				lang = "english";
+			}
+						
+			LocalizationHelper helper = LocalizationHelper.getInstance(lang, getServletContext());
+%>
 
 <html lang="en" class="no-js demo-1">
 <head>
@@ -38,17 +49,44 @@
 <script>	
  	
 	   function changeToSpanish()
-       {
-           document.form1.hiddenLanguage.value = "spanish";
-            form1.submit();
+       {	
+			$.ajax({
 
+        		type: 'POST', 
+        		url: '/DeviceSensorAnalytics/rest/language/'+"spanish",
+        		success: function(data){
+        			//alert(data);
+        			var obj = $.parseJSON(data);
+        			
+        			//alert(obj.status);
+        			if(obj.status == 200){
+        				console.log("Changed to Spanish");
+        				
+        			}
+        			
+        		}
+        	});
+            form1.submit();
        }    
        function changeToEnglish()
        {
-           document.form1.hiddenLanguage.value = "english";
+			$.ajax({
 
-           form1.submit();
-
+        		type: 'POST', 
+        		url: '/DeviceSensorAnalytics/rest/language/'+"english",
+        		success: function(data){
+        			//alert(data);
+        			var obj = $.parseJSON(data);
+        			
+        			//alert(obj.status);
+        			if(obj.status == 200){
+        				console.log("Changed to english");
+        				
+        			}
+        			
+        		}
+        	});
+            form1.submit();
        }        
  
 </script>
@@ -62,21 +100,7 @@
 			
 			
 		<div class="left">
-			<% 		
-			 String lang = request.getParameter("hiddenLanguage");			
-			if (lang == null)
-			{
-				lang = "english";
-				
-			} 			
-			session.removeAttribute("lang");
-			session.setAttribute("lang", lang);
-			System.out.println("session is " + session.getAttribute("lang"));
-			LocalizationHelper helper = LocalizationHelper.getInstance(lang, getServletContext());
-			Session s = Session.getInstance();
-			String userId = s.getEmail();
-		
-			%>
+
 				<span class="s_heading"><%=helper.getText("heading")%></span><br>
 				<span class="s_heading" style="font-size: 14px; float:left">
 				<%=helper.getText("heading2part1")%>&#9679;<%=helper.getText("heading2part2")%>&#9679;<%=helper.getText("heading2part3")%>

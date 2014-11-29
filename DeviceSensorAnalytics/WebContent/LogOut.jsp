@@ -9,6 +9,8 @@
 </head>
 
 <%Session s = Session.getInstance();
-s.setEmail(null);%>
+s.setEmail(null);
+
+%>
 <% response.sendRedirect("HomePage.jsp"); %>
 </html>

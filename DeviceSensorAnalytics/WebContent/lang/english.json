@@ -16,6 +16,11 @@
 	"aboutUsPara1": "Health Service is one place to manage your all patients' details. It helps doctor to manage patient profile, view their reports and give them feedback about their health.",
 	"aboutUsPara2": "Any Questions? Any Suggestions ?",
 	"aboutUsPara3": "Write to us at",
-	"feedbackHeading": "Please enter feedback below",
-	"send" : "Send"
+	"feedbackHeading": "Patient Feedback",
+	"send" : "Send",
+	"patientlist": "Patient List",
+	"profile": "Patient Profile",
+	"report": "Patient Health Report",
+	"getReport": "Get Report"
+	
 }

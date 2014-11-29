@@ -2,16 +2,16 @@
     pageEncoding="ISO-8859-1"%>
 <%@page import="utils.LocalizationHelper"%>
 <%@page import="utils.Session"%>
-<% 
-
-String langSelected = session.getAttribute("lang").toString();
-if(langSelected == null){
-	langSelected = "english";
-}
-LocalizationHelper helper = LocalizationHelper.getInstance(langSelected, getServletContext());
-Session s = Session.getInstance();
-String userId = s.getEmail();
-
+<% 	
+			Session s = Session.getInstance();
+			String userId = s.getEmail();
+			String lang = s.getLanguage();
+			
+			if(lang==null){
+				lang = "english";
+			}
+			
+			LocalizationHelper helper = LocalizationHelper.getInstance(lang, getServletContext());
 %>
 
 <!DOCTYPE html>
@@ -95,17 +95,45 @@ alert("Please login");
 <script>	
  	
 	   function changeToSpanish()
-       {
-           document.form1.hiddenLanguage.value = "spanish";
-            form1.submit();
+       {	//alert("change to spanish called");
+           //document.form1.hiddenLanguage.value = "spanish";
+			$.ajax({
 
+        		type: 'POST', 
+        		url: '/DeviceSensorAnalytics/rest/language/'+"spanish",
+        		success: function(data){
+        			//alert(data);
+        			var obj = $.parseJSON(data);
+        			
+        			//alert(obj.status);
+        			if(obj.status == 200){
+        				console.log("Changed to Spanish");
+        				
+        			}
+        			
+        		}
+        	});
+            form1.submit();
        }    
        function changeToEnglish()
        {
-           document.form1.hiddenLanguage.value = "english";
+			$.ajax({
 
-           form1.submit();
-
+        		type: 'POST', 
+        		url: '/DeviceSensorAnalytics/rest/language/'+"english",
+        		success: function(data){
+        			//alert(data);
+        			var obj = $.parseJSON(data);
+        			
+        			//alert(obj.status);
+        			if(obj.status == 200){
+        				console.log("Changed to english");
+        				
+        			}
+        			
+        		}
+        	});
+            form1.submit();
        }        
  
 </script>
@@ -167,6 +195,7 @@ alert("Please login");
 		</div>
 		<br>
 		<div class="container">
+			<h3 align = "center"><%=helper.getText("patientlist")%></h3>
 			<div id = "patientList" align="center"></div>
 			
 		</div>
