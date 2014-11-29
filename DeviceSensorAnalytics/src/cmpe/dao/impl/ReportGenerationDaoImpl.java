@@ -1,13 +1,13 @@
 package cmpe.dao.impl;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.List;
 
-import net.sf.json.JSONObject;
+
+
 
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
-import cmpe.entity.ReportGeneration;
+import cmpe.entity.CollectHealthData;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
@@ -19,7 +19,8 @@ import com.mongodb.MongoException;
 
 public class ReportGenerationDaoImpl {
 	public String reportGen(Object object) { 
-		ReportGeneration pl = (ReportGeneration) object;
+		
+		CollectHealthData pl = (CollectHealthData) object;
 		String email = pl.getPemail();
 		JSONObject mainObj = new JSONObject();
 		try { 
@@ -36,14 +37,13 @@ public class ReportGenerationDaoImpl {
 			    String timestampVal = o.get("timestampVal").toString();
 				String highBp = o.get("highBp").toString();
 				String lowBp = o.get("lowBp").toString();
-				String bpm = o.get("bpm").toString();
 				JSONObject jo = new JSONObject();
 				jo.put("timestampVal", timestampVal);
 				jo.put("highBp", highBp);
 				jo.put("lowBp", lowBp);
-				jo.put("bpm", bpm);
 				ja.add(jo);
-				mainObj.put("data", ja);
+				mainObj.put("status", 200);
+				mainObj.put("values", ja);
 			}
 			System.out.println("Done");
 		} catch (UnknownHostException e) { 

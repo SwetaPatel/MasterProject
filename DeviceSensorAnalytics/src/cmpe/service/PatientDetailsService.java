@@ -14,7 +14,7 @@ public class PatientDetailsService {
 	@GET
 	@Path("/{email}")
 	
-	  public String get_psignin(@PathParam("email") String email) {
+	  public String get_pDetials(@PathParam("email") String email) {
 //		
 		PatientRegistration si = new PatientRegistration();
     	si.setEmail(email);
