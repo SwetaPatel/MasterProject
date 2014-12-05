@@ -25,10 +25,10 @@ public class CollectHealthDataDaoImpl {
 		try { 
 			Mongo mongo = new Mongo("localhost", 27017);  
 			DB db = mongo.getDB("healthdb"); 
-			System.out.println("aa");
+		//	System.out.println("aa");
 			DBCollection collection = db.getCollection("healthCollection");  
 			BasicDBObject document = new BasicDBObject(); 
-			System.out.println("aa");
+		//	System.out.println("aa");
 			document.put("pemail", pemail);  
 			document.put("highBp", highBp);  
 			document.put("lowBp", lowBp);  
@@ -43,7 +43,7 @@ public class CollectHealthDataDaoImpl {
 			// TODO Auto-generated catch block 
 			e.printStackTrace(); 
 		}
-		return "hello";
+		return "inserted";
 	}
 }
 

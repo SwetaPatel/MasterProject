@@ -24,10 +24,10 @@ public class DoctorRegistrationService {
 	    	su.setDocFname(docFname);
 	    	su.setDocLname(docLname);
 	    	su.setDgender(dgender);
-	    	System.out.println(demail);
-	    	System.out.println(dpassword);
-	    	System.out.println(docFname);
-	    	System.out.println(dgender);
+//	    	System.out.println(demail);
+//	    	System.out.println(dpassword);
+//	    	System.out.println(docFname);
+//	    	System.out.println(dgender);
 	    	DoctorRegistrationDaoImpl Sudao = new DoctorRegistrationDaoImpl();
 	    	
 	    	String Output = Sudao.dsignup(su);

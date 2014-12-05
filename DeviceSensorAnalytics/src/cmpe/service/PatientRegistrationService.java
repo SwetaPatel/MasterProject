@@ -27,15 +27,13 @@ public class PatientRegistrationService {
 	    	su.setGender(gender);
 	    	su.setAge(pAge);
 	    	su.setDemail(demail);
-	   // 	su.setId(pId);
-	    	//su.setTimestamp(timestamp);
+	  
 	    	System.out.println("aa3");
 	    	PatientRegistrationDaoImpl Sudao = new PatientRegistrationDaoImpl();
 	    	System.out.println("aa4");
 	    	String Output = Sudao.psignup(su);
 	    	JSONObject json = new JSONObject();
             json.put("status", 200);
-           
             return json.toString();	
 	}
 }

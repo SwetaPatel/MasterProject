@@ -20,7 +20,6 @@ public class DoctorRegistrationDaoImpl {
 		 String lName = pr.getDocLname();
 	//	 int id = pr.getId();
 		try { 
-			@SuppressWarnings("deprecation")
 			Mongo mongo = new Mongo("localhost", 27017);  
 			DB db = mongo.getDB("doctorRegistrationdb"); 
 			DBCollection collection = db.getCollection("doctorRegistrationCollection");  
